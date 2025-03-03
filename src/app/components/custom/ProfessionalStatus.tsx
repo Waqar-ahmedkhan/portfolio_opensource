@@ -4,7 +4,7 @@ import React from 'react';
 
 const ProfessionalStats = () => {
   const stats = [
-    { number: "+12", label: "YEARS OF EXPERIENCE" },
+    { number: "+2", label: "YEARS OF EXPERIENCE" },
     { number: "+46", label: "PROJECTS COMPLETED" },
     { number: "+20", label: "WORLDWIDE CLIENTS" }
   ];
@@ -42,7 +42,7 @@ const ProfessionalStats = () => {
     <div className="w-full max-w-3xl">
       {/* Title and Description */}
       <div className="mb-16">
-        <h1 className="text-6xl font-bold text-white mb-4">
+        <h1 className="text-7xl font-bold text-white mb-4">
           SOFTWARE
           <br />
           <span className="text-zinc-700">ENGINEER</span>

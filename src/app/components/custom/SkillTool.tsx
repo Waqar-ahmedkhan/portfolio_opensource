@@ -80,10 +80,10 @@ const CategoryHeading = ({ title, icon }: { title: string; icon: React.ReactNode
 
 const DeveloperTools = () => {
   return (
-    <div className="mt-16 mb-16">
+    <div className="ml-50 mb-16">
       <div className="relative">
-        <h2 className="text-5xl font-bold mb-2 text-white">PREMIUM</h2>
-        <h2 className="text-5xl font-bold text-zinc-700 mb-12">TOOLS</h2>
+        <h2 className="text-7xl font-bold mb-2 text-white">PREMIUM</h2>
+        <h2 className="text-7xl font-bold text-zinc-700 mb-12">TOOLS</h2>
         <div className="absolute -top-8 -right-8 w-24 h-24 bg-orange-500/20 rounded-full blur-3xl"></div>
         <div className="absolute top-12 left-24 w-12 h-12 bg-blue-500/20 rounded-full blur-2xl"></div>
       </div>
