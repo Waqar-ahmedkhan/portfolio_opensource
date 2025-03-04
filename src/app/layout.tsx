@@ -2,8 +2,8 @@
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono, Inter } from 'next/font/google';
 import './globals.css';
-import Navbar from './components/custom/Navbar';
-import ProfileSidebar from '../app/components/custom/SideBarProfile';
+import Navbar from './_components/custom/Navbar';
+import ProfileSidebar from '../app/_components/custom/SideBarProfile';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 const geistSans = Geist({ subsets: ['latin'], variable: '--font-geist-sans' });
@@ -24,7 +24,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
             {/* Sidebar container - fixed position on the left */}
             <div className="lg:col-span-4 xl:col-span-3">
-              <div className="lg:sticky ml-32 lg:top-24">
+              <div className="lg:sticky ml-32 lg:top-12">
                 <ProfileSidebar />
               </div>
             </div>

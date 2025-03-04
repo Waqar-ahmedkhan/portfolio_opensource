@@ -41,14 +41,13 @@ const EnhancedContactForm: React.FC<ContactFormProps> = ({}) => {
   };
 
   return (
-    <div className="min-h-screen w-full  flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+    <div className="w-full ml-12 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-3xl w-full mx-auto">
         {/* Heading Section */}
         <div className="mr-20 mb-12">
-          <h1 className="text-5xl ml-16 md:text-6xl font-extrabold text-white leading-tight mb-6">
-            <span className="block">LET&apos;S</span>
-            <span className="block">WORK</span>
-            <span className="block relative">
+          <h1 className="text-7xl ml-16 md:text-7xl  font-extrabold text-white leading-tight mb-6">
+            <span className="block ">LET&apos;S WORK</span>
+            <span className="block relative text-gray-600">
               TOGETHER
               <div className="h-2 w-32 bg-white mt-2 rounded-full mx-auto"></div>
             </span>
@@ -56,7 +55,7 @@ const EnhancedContactForm: React.FC<ContactFormProps> = ({}) => {
  </div>
 
         {/* Form Section */}
-        <div className=" rounded-2xl p-8 shadow-2xl">
+        <div className=" ml-12 rounded-2xl p-8 shadow-2xl">
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-2">

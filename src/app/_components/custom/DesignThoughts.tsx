@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import articles from '../../_data/articles';
-
+import Contactus from "../custom/Contactus"
 const DesignThoughts: React.FC = () => {
   const pathname = usePathname();
   const isArticleDetail = pathname.startsWith('/thoughts/');
@@ -13,15 +13,18 @@ const DesignThoughts: React.FC = () => {
   const selectedArticle = articleId ? articles.find(article => article.id === articleId) : null;
   
   return (
-    <div className="design-thoughts px-4 md:px-40">
+    <div className="design-thoughts px-4 md:px-26">
+      <div className='ml-24'>
       <h1 className="text-7xl font-bold ">
         DESIGN
       </h1>
        <h1 className='text-7xl font-bold mb-12 text-zinc-500 '>THOUGHTS</h1>
+      </div>
+     
      
       
       {!isArticleDetail ? (
-        <div className=" mr-12 max-w-2xl mx-auto grid gap-12">
+        <div className=" ml-16 max-w-3xl mx-auto grid gap-12">
           {articles.map((article) => (
             <Link 
               key={article.id}
@@ -149,6 +152,7 @@ const ArticleDetail: React.FC<{ article: Article }> = ({ article }) => {
               }
             })}
           </div>
+          <Contactus />
         </div>
 
         <div className="md:col-span-1">

@@ -1,11 +1,11 @@
 // app/page.tsx
 import React from "react";
-import ProfessionalStats from "./components/custom/ProfessionalStatus";
-import Projects from "./components/custom/Projects";
-import ExperienceSection from "./components/custom/ExperienceComp";
-import Skills from "./components/custom/SkillTool";
-import Thougths from "./components/custom/DesignThoughts";
-import ContactUs from "./components/custom/Contactus";
+import ProfessionalStats from "./_components/custom/ProfessionalStatus";
+import Projects from "./_components/custom/Projects";
+import ExperienceSection from "./_components/custom/ExperienceComp";
+import Skills from "./_components/custom/SkillTool";
+import Thougths from "./_components/custom/DesignThoughts";
+import ContactUs from "./_components/custom/Contactus";
 
 export default function Home() {
   return (

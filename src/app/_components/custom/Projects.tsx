@@ -34,19 +34,19 @@ const Projects = () => {
   ];
 
   return (
-    <div className="px-32  text-white font-sans">
+    <div className="px-6 md:px-16 lg:px-32 text-white font-sans">
       <div className="max-w-6xl mx-auto">
-        <div className="mb-16 relative">
-          <h1 className="text-7xl font-bold mb-2 tracking-tighter">RECENT</h1>
-          <h2 className="text-7xl font-bold text-gray-800 tracking-tighter">PROJECTS</h2>
-          <div className="absolute -right-4 top-4 bg-gradient-to-r from-purple-500 to-indigo-600 h-1 w-24 rounded-full opacity-50"></div>
+        <div className="mb-12 md:mb-16 relative text-center md:text-left">
+          <h1 className="text-5xl md:text-7xl font-bold mb-2 tracking-tighter">RECENT</h1>
+          <h2 className="text-5xl md:text-7xl font-bold text-gray-800 tracking-tighter">PROJECTS</h2>
+          <div className="absolute left-1/2 -translate-x-1/2 md:left-auto md:right-4 top-4 bg-gradient-to-r from-purple-500 to-indigo-600 h-1 w-24 rounded-full opacity-50"></div>
         </div>
 
         <div className="space-y-12">
           {projects.map((project) => (
             <div 
               key={project.id} 
-              className="flex items-start group cursor-pointer"
+              className="flex flex-col md:flex-row items-center md:items-start group cursor-pointer"
               onMouseEnter={() => setHovered(project.id)}
               onMouseLeave={() => setHovered(null)}
             >
@@ -74,9 +74,9 @@ const Projects = () => {
                 />
               </div>
 
-              <div className="ml-10 pt-4 flex-1">
-                <div className="flex items-center gap-4">
-                  <h3 className="text-4xl font-bold tracking-tight group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-indigo-500 group-hover:to-purple-600 transition-all duration-300">
+              <div className="mt-6 md:ml-10 md:pt-4 flex-1 text-center md:text-left">
+                <div className="flex flex-col md:flex-row items-center md:items-center gap-4">
+                  <h3 className="text-3xl md:text-4xl font-bold tracking-tight group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-indigo-500 group-hover:to-purple-600 transition-all duration-300">
                     {project.title}
                   </h3>
                   <div className={`transition-all duration-500 transform ${hovered === project.id ? 'opacity-100 translate-x-2 -translate-y-1' : 'opacity-0'}`}>
@@ -85,8 +85,8 @@ const Projects = () => {
                     </svg>
                   </div>
                 </div>
-                <p className="text-xl text-gray-500 mt-2 tracking-wide">{project.subtitle}</p>
-                <p className="text-gray-400 mt-4 max-w-xl">{project.description}</p>
+                <p className="text-lg md:text-xl text-gray-500 mt-2 tracking-wide">{project.subtitle}</p>
+                <p className="text-gray-400 mt-4 max-w-xl mx-auto md:mx-0">{project.description}</p>
                 
                 <div className={`mt-6 transition-all duration-500 ${hovered === project.id ? 'opacity-100' : 'opacity-0'}`}>
                   <button className="text-sm bg-gradient-to-r from-indigo-500 to-purple-600 px-4 py-2 rounded-full text-white font-medium hover:shadow-lg hover:shadow-indigo-500/20 transition-all duration-300">
