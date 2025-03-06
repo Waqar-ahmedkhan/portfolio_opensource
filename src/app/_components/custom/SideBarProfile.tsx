@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
@@ -7,7 +5,7 @@ import { Twitter, Instagram, Mail, Github } from "lucide-react";
 
 const ProfileSidebar = () => {
   return (
-    <div className="w-[350px] h-full sticky bg-white rounded-3xl border border-zinc-800/50 shadow-lg">
+    <div className="w-full lg:w-[350px] h-full sticky bg-white rounded-3xl border border-zinc-800/50 shadow-lg">
       {/* Card with curved dotted line decoration */}
       <div className="relative p-6">
         {/* Dotted curved line decoration */}
@@ -34,7 +32,7 @@ const ProfileSidebar = () => {
           <div className="rounded-2xl overflow-hidden bg-orange-600 w-full h-64 relative">
             <Image
               src="/profile-image.jpg"
-              alt="Aabid Ahmed"
+              alt="Waqar Ahmed"
               className="w-full h-full object-cover mix-blend-multiply"
               width={400}
               height={400}

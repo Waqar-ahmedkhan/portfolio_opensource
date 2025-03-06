@@ -19,13 +19,13 @@ export default function Home() {
       <div className="flex justify-end py-16">
         <ExperienceSection/>
       </div>
-      <div className="flex justify-end py-16">
+      <div className="flex justify-end py-8">
         <Skills />
       </div>
       <div className="flex justify-end py-16">
         <Thougths />
       </div>
-      <div className="flex justify-end py-16">
+      <div className="flex justify-center py-16">
         <ContactUs />
       </div>
     </>

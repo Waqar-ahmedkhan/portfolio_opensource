@@ -41,24 +41,24 @@ const EnhancedContactForm: React.FC<ContactFormProps> = ({}) => {
   };
 
   return (
-    <div className="w-full ml-12 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="w-full lg:ml-24 py-8 sm:py-10 md:py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-3xl w-full mx-auto">
         {/* Heading Section */}
-        <div className="mr-20 mb-12">
-          <h1 className="text-7xl ml-16 md:text-7xl  font-extrabold text-white leading-tight mb-6">
-            <span className="block ">LET&apos;S WORK</span>
+        <div className="mb-8 sm:mb-10 md:mb-12 text-center sm:text-left">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-white leading-tight mb-4 sm:mb-6">
+            <span className="block">LET&apos;S WORK</span>
             <span className="block relative text-gray-600">
               TOGETHER
-              <div className="h-2 w-32 bg-white mt-2 rounded-full mx-auto"></div>
+              <div className="h-1 sm:h-2 w-24 sm:w-32 bg-white mt-1 sm:mt-2 rounded-full mx-auto sm:mx-0"></div>
             </span>
           </h1>
- </div>
+        </div>
 
         {/* Form Section */}
-        <div className=" ml-12 rounded-2xl p-8 shadow-2xl">
-          <form onSubmit={handleSubmit} className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="space-y-2">
+        <div className="rounded-2xl p-4 sm:p-6 md:p-8 shadow-2xl">
+          <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+              <div className="space-y-1 sm:space-y-2">
                 <label htmlFor="name" className="block text-sm font-medium text-gray-300">
                   Name
                 </label>
@@ -69,12 +69,12 @@ const EnhancedContactForm: React.FC<ContactFormProps> = ({}) => {
                   required
                   value={formData.name}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 rounded-lg bg-gray-700 border border-gray-600 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500"
+                  className="w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg bg-gray-700 border border-gray-600 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500"
                   placeholder="Your name"
                 />
               </div>
               
-              <div className="space-y-2">
+              <div className="space-y-1 sm:space-y-2">
                 <label htmlFor="email" className="block text-sm font-medium text-gray-300">
                   Email
                 </label>
@@ -85,13 +85,13 @@ const EnhancedContactForm: React.FC<ContactFormProps> = ({}) => {
                   required
                   value={formData.email}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 rounded-lg bg-gray-700 border border-gray-600 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500"
+                  className="w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg bg-gray-700 border border-gray-600 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500"
                   placeholder="your@email.com"
                 />
               </div>
             </div>
             
-            <div className="space-y-2">
+            <div className="space-y-1 sm:space-y-2">
               <label htmlFor="budget" className="block text-sm font-medium text-gray-300">
                 Budget
               </label>
@@ -101,7 +101,7 @@ const EnhancedContactForm: React.FC<ContactFormProps> = ({}) => {
                 required
                 value={formData.budget}
                 onChange={handleChange}
-                className="w-full px-4 py-3 rounded-lg bg-gray-700 border border-gray-600 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500 appearance-none"
+                className="w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg bg-gray-700 border border-gray-600 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500 appearance-none"
                 style={{
                   backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23D1D5DB' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e")`,
                   backgroundPosition: 'right 0.5rem center',
@@ -118,18 +118,18 @@ const EnhancedContactForm: React.FC<ContactFormProps> = ({}) => {
               </select>
             </div>
             
-            <div className="space-y-2">
+            <div className="space-y-1 sm:space-y-2">
               <label htmlFor="message" className="block text-sm font-medium text-gray-300">
                 Message
               </label>
               <textarea
                 id="message"
                 name="message"
-                rows={5}
+                rows={4}
                 required
                 value={formData.message}
                 onChange={handleChange}
-                className="w-full px-4 py-3 rounded-lg bg-gray-700 border border-gray-600 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500 resize-none"
+                className="w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg bg-gray-700 border border-gray-600 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500 resize-none"
                 placeholder="Tell me about your project..."
               />
             </div>
@@ -138,7 +138,7 @@ const EnhancedContactForm: React.FC<ContactFormProps> = ({}) => {
               <button
                 type="submit"
                 disabled={isSubmitting || isSubmitted}
-                className="w-full py-4 px-6 rounded-lg font-medium text-white transition-all duration-300 relative overflow-hidden"
+                className="w-full py-3 sm:py-4 px-4 sm:px-6 rounded-lg font-medium text-white transition-all duration-300 relative overflow-hidden"
                 style={{ 
                   background: isSubmitted 
                     ? 'linear-gradient(90deg, #4CAF50, #2E7D32)' 
@@ -148,7 +148,7 @@ const EnhancedContactForm: React.FC<ContactFormProps> = ({}) => {
               >
                 {isSubmitting ? (
                   <span className="flex items-center justify-center">
-                    <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <svg className="animate-spin -ml-1 mr-2 h-4 w-4 sm:h-5 sm:w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                       <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                       <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                     </svg>
@@ -156,7 +156,7 @@ const EnhancedContactForm: React.FC<ContactFormProps> = ({}) => {
                   </span>
                 ) : isSubmitted ? (
                   <span className="flex items-center justify-center">
-                    <svg className="-ml-1 mr-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <svg className="-ml-1 mr-2 h-4 w-4 sm:h-5 sm:w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
                     </svg>
                     Sent Successfully!
@@ -164,7 +164,7 @@ const EnhancedContactForm: React.FC<ContactFormProps> = ({}) => {
                 ) : (
                   <span className="flex items-center justify-center">
                     Get Started
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 sm:h-5 sm:w-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                     </svg>
                   </span>

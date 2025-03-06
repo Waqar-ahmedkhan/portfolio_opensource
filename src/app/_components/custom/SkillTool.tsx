@@ -1,335 +1,372 @@
-// app/components/custom/DeveloperTools.tsx
-import React from 'react';
-import { 
-  SiNextdotjs, 
-  SiNodedotjs, 
-  SiExpress, 
-  SiReact, 
-  SiGraphql, 
-  SiMongodb,
+"use client";
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  SiNextdotjs,
+  SiNodedotjs,
+  SiExpress,
+  SiReact,
+  SiGraphql,
   SiTailwindcss,
   SiTypescript,
   SiDocker,
   SiTensorflow,
-  SiRedis,
-  SiPostgresql,
-  SiFirebase,
   SiPrisma,
   SiKubernetes,
   SiGithubactions,
-  SiPandas,
-  SiNumpy,
-  SiFastapi,
   SiScikitlearn,
   SiPytorch,
-  SiWeb3Dotjs,
   SiVercel,
-  SiSolidity,
-  SiSupabase,
-  SiElasticsearch,
-  SiRedux,
-  SiVite,
-  SiDjango,
-  SiStripe
-} from 'react-icons/si';
-import { TbBrandOpenai } from 'react-icons/tb';
-import {  FaBrain, FaRobot, FaMicrochip } from 'react-icons/fa';
-import { HiSparkles } from 'react-icons/hi';
+} from "react-icons/si";
+import { TbBrandOpenai } from "react-icons/tb";
+import { FaBrain, FaFilter } from "react-icons/fa";
+
+type CategoryType = "frontend" | "backend" | "devops" | "ai" | "all";
 
 interface ToolCardProps {
   icon: React.ReactNode;
   name: string;
   description: string;
-  category: 'frontend' | 'backend' | 'database' | 'devops' | 'ai' | 'web3' | 'other';
+  category: Exclude<CategoryType, "all">;
+  index: number;
 }
 
-const ToolCard = ({ icon, name, description, category }: ToolCardProps) => {
+const ToolCard = ({
+  icon,
+  name,
+  description,
+  category,
+  index,
+}: ToolCardProps) => {
   const getCategoryColor = () => {
     switch (category) {
-      case 'frontend': return 'from-blue-500 to-sky-600';
-      case 'backend': return 'from-green-500 to-emerald-600';
-      case 'database': return 'from-violet-500 to-purple-600';
-      case 'devops': return 'from-yellow-500 to-amber-600';
-      case 'ai': return 'from-rose-500 to-pink-600';
-      case 'web3': return 'from-indigo-500 to-blue-600';
-      default: return 'from-gray-500 to-slate-600';
+      case "frontend":
+        return "from-blue-500 to-sky-600";
+      case "backend":
+        return "from-green-500 to-emerald-600";
+      case "devops":
+        return "from-yellow-500 to-amber-600";
+      case "ai":
+        return "from-rose-500 to-pink-600";
+      default:
+        return "from-gray-500 to-slate-600";
     }
   };
 
   return (
-    <div className="bg-zinc-900 rounded-xl p-4 border border-zinc-800 hover:border-zinc-700 transition-all flex items-center gap-4 transform hover:-translate-y-1 hover:shadow-lg hover:shadow-black/20">
-      <div className={`w-12 h-12 rounded-lg bg-gradient-to-br ${getCategoryColor()} flex items-center justify-center text-white`}>
-        <div className="text-2xl">
-          {icon}
-        </div>
-      </div>
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -20 }}
+      transition={{
+        duration: 0.4,
+        delay: index * 0.05,
+        ease: [0.22, 1, 0.36, 1],
+      }}
+      whileHover={{
+        y: -6,
+        transition: { duration: 0.2 },
+      }}
+      className="bg-zinc-900/90 backdrop-blur-sm rounded-xl p-4 border border-zinc-800 hover:border-zinc-600 shadow-lg shadow-black/5 transition-all flex items-center gap-4 group"
+    >
+      <motion.div
+        whileHover={{ scale: 1.1, rotate: 10 }}
+        className={`w-12 h-12 rounded-lg bg-gradient-to-br ${getCategoryColor()} flex items-center justify-center text-white shadow-md`}
+      >
+        <div className="text-2xl">{icon}</div>
+      </motion.div>
       <div>
-        <h3 className="font-semibold text-white">{name}</h3>
-        <p className="text-zinc-400 text-sm">{description}</p>
+        <h3 className="font-semibold text-white group-hover:text-orange-300 transition-colors">
+          {name}
+        </h3>
+        <p className="text-zinc-400 text-sm group-hover:text-zinc-300 transition-colors">
+          {description}
+        </p>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
-const CategoryHeading = ({ title, icon }: { title: string; icon: React.ReactNode }) => (
-  <div className="flex items-center gap-3 mb-4 mt-8">
-    <div className="text-2xl text-orange-500">{icon}</div>
-    <h3 className="text-xl font-bold text-white">{title}</h3>
-  </div>
+const CategoryHeading = ({
+  title,
+  icon,
+  onClick,
+  isActive,
+}: {
+  title: string;
+  icon: React.ReactNode;
+  onClick: () => void;
+  isActive: boolean;
+}) => (
+  <motion.button
+    whileHover={{ scale: 1.05 }}
+    whileTap={{ scale: 0.98 }}
+    onClick={onClick}
+    className={`flex items-center gap-3 px-4 py-2 rounded-lg transition-all ${
+      isActive
+        ? "bg-orange-500 text-white shadow-lg shadow-orange-500/20"
+        : "bg-zinc-800/50 text-zinc-400 hover:bg-zinc-700/70 hover:text-zinc-200"
+    }`}
+  >
+    <div className={`text-xl ${isActive ? "text-white" : "text-orange-500"}`}>
+      {icon}
+    </div>
+    <h3 className="font-semibold">{title}</h3>
+  </motion.button>
 );
 
-const DeveloperTools = () => {
+const ToolsGrid = ({
+  tools,
+  selectedCategory,
+}: {
+  tools: Array<{
+    icon: React.ReactNode;
+    name: string;
+    description: string;
+    category: Exclude<CategoryType, "all">;
+  }>;
+  selectedCategory: CategoryType;
+}) => {
+  const filteredTools =
+    selectedCategory === "all"
+      ? tools
+      : tools.filter((tool) => tool.category === selectedCategory);
+
   return (
-    <div className="ml-50 mb-16">
-      <div className="relative">
-        <h2 className="text-7xl font-bold mb-2 text-white">PREMIUM</h2>
-        <h2 className="text-7xl font-bold text-zinc-700 mb-12">TOOLS</h2>
-        <div className="absolute -top-8 -right-8 w-24 h-24 bg-orange-500/20 rounded-full blur-3xl"></div>
-        <div className="absolute top-12 left-24 w-12 h-12 bg-blue-500/20 rounded-full blur-2xl"></div>
+    <AnimatePresence mode="wait">
+      <motion.div
+        key={selectedCategory}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.3 }}
+        className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-8"
+      >
+        {filteredTools.map((tool, index) => (
+          <ToolCard
+            key={`${tool.category}-${tool.name}`}
+            icon={tool.icon}
+            name={tool.name}
+            description={tool.description}
+            category={tool.category}
+            index={index}
+          />
+        ))}
+      </motion.div>
+    </AnimatePresence>
+  );
+};
+
+const DeveloperTools = () => {
+  const [selectedCategory, setSelectedCategory] = useState<CategoryType>("all");
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
+
+  const categories = [
+    { id: "all", title: "All Tools", icon: <SiReact /> },
+    { id: "frontend", title: "Frontend", icon: <SiReact /> },
+    { id: "backend", title: "Backend", icon: <SiNodedotjs /> },
+    { id: "devops", title: "DevOps", icon: <SiDocker /> },
+    { id: "ai", title: "AI & ML", icon: <FaBrain /> },
+  ];
+
+  const tools: Array<{
+    icon: React.ReactNode;
+    name: string;
+    description: string;
+    category: Exclude<CategoryType, "all">;
+  }> = [
+    // Frontend Tools
+    {
+      icon: <SiReact />,
+      name: "React",
+      description: "Frontend UI Library",
+      category: "frontend",
+    },
+    {
+      icon: <SiNextdotjs />,
+      name: "Next.js",
+      description: "React Framework",
+      category: "frontend",
+    },
+    {
+      icon: <SiTailwindcss />,
+      name: "Tailwind CSS",
+      description: "Utility-first CSS",
+      category: "frontend",
+    },
+    {
+      icon: <SiTypescript />,
+      name: "TypeScript",
+      description: "Typed JavaScript",
+      category: "frontend",
+    },
+
+    // Backend Tools
+    {
+      icon: <SiNodedotjs />,
+      name: "Node.js",
+      description: "JavaScript Runtime",
+      category: "backend",
+    },
+    {
+      icon: <SiExpress />,
+      name: "Express",
+      description: "Node.js Framework",
+      category: "backend",
+    },
+    {
+      icon: <SiGraphql />,
+      name: "GraphQL",
+      description: "API Query Language",
+      category: "backend",
+    },
+    {
+      icon: <SiPrisma />,
+      name: "Prisma",
+      description: "ORM for Node.js",
+      category: "backend",
+    },
+
+    // DevOps Tools
+    {
+      icon: <SiDocker />,
+      name: "Docker",
+      description: "Containerization",
+      category: "devops",
+    },
+    {
+      icon: <SiKubernetes />,
+      name: "Kubernetes",
+      description: "Container Orchestration",
+      category: "devops",
+    },
+    {
+      icon: <SiVercel />,
+      name: "Vercel",
+      description: "Deployment Platform",
+      category: "devops",
+    },
+    {
+      icon: <SiGithubactions />,
+      name: "GitHub Actions",
+      description: "CI/CD",
+      category: "devops",
+    },
+
+    // AI & ML Tools
+    {
+      icon: <SiTensorflow />,
+      name: "TensorFlow",
+      description: "ML Framework",
+      category: "ai",
+    },
+    {
+      icon: <SiPytorch />,
+      name: "PyTorch",
+      description: "ML Framework",
+      category: "ai",
+    },
+    {
+      icon: <SiScikitlearn />,
+      name: "Scikit-learn",
+      description: "ML Library",
+      category: "ai",
+    },
+    {
+      icon: <TbBrandOpenai />,
+      name: "LangChain",
+      description: "LLM Framework",
+      category: "ai",
+    },
+  ];
+
+  return (
+    <div className="lg:ml-40 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 mb-16 relative">
+      {/* Animated background effects */}
+      <div className="absolute top-0 right-0 -z-10">
+        <div className="absolute -top-20 -right-20 w-72 h-72 bg-orange-500/10 rounded-full blur-3xl animate-pulse"></div>
+        <div
+          className="absolute top-40 right-80 w-52 h-52 bg-blue-500/10 rounded-full blur-3xl animate-pulse"
+          style={{ animationDuration: "7s" }}
+        ></div>
+        <div
+          className="absolute top-80 right-20 w-40 h-40 bg-purple-500/10 rounded-full blur-3xl animate-pulse"
+          style={{ animationDuration: "10s" }}
+        ></div>
       </div>
-      
-      <div className="space-y-8">
-        <CategoryHeading title="Frontend Development" icon={<SiReact />} />
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          <ToolCard 
-            icon={<SiReact />} 
-            name="React" 
-            description="Frontend UI Library" 
-            category="frontend"
-          />
-          <ToolCard 
-            icon={<SiNextdotjs />} 
-            name="Next.js" 
-            description="React Framework" 
-            category="frontend"
-          />
-          <ToolCard 
-            icon={<SiTailwindcss />} 
-            name="Tailwind CSS" 
-            description="Utility-first CSS" 
-            category="frontend"
-          />
-          <ToolCard 
-            icon={<SiTypescript />} 
-            name="TypeScript" 
-            description="Typed JavaScript" 
-            category="frontend"
-          />
-          <ToolCard 
-            icon={<SiRedux />} 
-            name="Redux" 
-            description="State Management" 
-            category="frontend"
-          />
-          <ToolCard 
-            icon={<SiVite />} 
-            name="Vite" 
-            description="Frontend Tooling" 
-            category="frontend"
-          />
-        </div>
 
-        <CategoryHeading title="Backend Development" icon={<SiNodedotjs />} />
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          <ToolCard 
-            icon={<SiNodedotjs />} 
-            name="Node.js" 
-            description="JavaScript Runtime" 
-            category="backend"
-          />
-          <ToolCard 
-            icon={<SiExpress />} 
-            name="Express" 
-            description="Node.js Framework" 
-            category="backend"
-          />
-          <ToolCard 
-            icon={<SiGraphql />} 
-            name="GraphQL" 
-            description="API Query Language" 
-            category="backend"
-          />
-          <ToolCard 
-            icon={<SiPrisma />} 
-            name="Prisma" 
-            description="ORM for Node.js" 
-            category="backend"
-          />
-          <ToolCard 
-            icon={<SiDjango />} 
-            name="Django" 
-            description="Python Framework" 
-            category="backend"
-          />
-          <ToolCard 
-            icon={<SiFastapi />} 
-            name="FastAPI" 
-            description="Python API Framework" 
-            category="backend"
-          />
-        </div>
+      <motion.div
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        className="relative mb-12"
+      >
+        <motion.h2
+          initial={{ x: -50, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-pink-500"
+        >
+          PREMIUM
+        </motion.h2>
+        <motion.h2
+          initial={{ x: 50, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-zinc-700 mb-4"
+        >
+          TOOLS
+        </motion.h2>
+        <motion.p
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.6 }}
+          className="text-zinc-400 max-w-2xl"
+        >
+          Showcasing my top skills in full-stack development, DevOps, and AI
+          with these powerful tools.
+        </motion.p>
+      </motion.div>
 
-        <CategoryHeading title="Database Technologies" icon={<SiMongodb />} />
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          <ToolCard 
-            icon={<SiMongodb />} 
-            name="MongoDB" 
-            description="NoSQL Database" 
-            category="database"
-          />
-          <ToolCard 
-            icon={<SiPostgresql />} 
-            name="PostgreSQL" 
-            description="SQL Database" 
-            category="database"
-          />
-          <ToolCard 
-            icon={<SiRedis />} 
-            name="Redis" 
-            description="In-memory Store" 
-            category="database"
-          />
-          <ToolCard 
-            icon={<SiElasticsearch />} 
-            name="Elasticsearch" 
-            description="Search & Analytics" 
-            category="database"
-          />
-          <ToolCard 
-            icon={<SiSupabase />} 
-            name="Supabase" 
-            description="Firebase Alternative" 
-            category="database"
-          />
-          <ToolCard 
-            icon={<SiFirebase />} 
-            name="Firebase" 
-            description="App Development Platform" 
-            category="database"
-          />
-        </div>
-
-        <CategoryHeading title="AI & Machine Learning" icon={<FaBrain />} />
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          <ToolCard 
-            icon={<SiTensorflow />} 
-            name="TensorFlow" 
-            description="ML Framework" 
-            category="ai"
-          />
-          <ToolCard 
-            icon={<SiPytorch />} 
-            name="PyTorch" 
-            description="ML Framework" 
-            category="ai"
-          />
-          <ToolCard 
-            icon={<SiPandas />} 
-            name="Pandas" 
-            description="Data Analysis" 
-            category="ai"
-          />
-          <ToolCard 
-            icon={<SiNumpy />} 
-            name="NumPy" 
-            description="Numerical Computing" 
-            category="ai"
-          />
-          <ToolCard 
-            icon={<SiScikitlearn />} 
-            name="Scikit-learn" 
-            description="ML Library" 
-            category="ai"
-          />
-          <ToolCard 
-            icon={<TbBrandOpenai />} 
-            name="LangChain" 
-            description="LLM Framework" 
-            category="ai"
-          />
-          <ToolCard 
-            icon={<HiSparkles />} 
-            name="Hugging Face" 
-            description="ML Models & Datasets" 
-            category="ai"
-          />
-          <ToolCard 
-            icon={<FaRobot />} 
-            name="NLTK" 
-            description="NLP Toolkit" 
-            category="ai"
-          />
-          <ToolCard 
-            icon={<FaMicrochip />} 
-            name="CUDA" 
-            description="GPU Computing" 
-            category="ai"
-          />
-        </div>
-
-        <CategoryHeading title="DevOps & Cloud" icon={<SiDocker />} />
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          <ToolCard 
-            icon={<SiDocker />} 
-            name="Docker" 
-            description="Containerization" 
-            category="devops"
-          />
-          <ToolCard 
-            icon={<SiKubernetes />} 
-            name="Kubernetes" 
-            description="Container Orchestration" 
-            category="devops"
-          />
-          {/* <ToolCard 
-            // icon={<SiAmazonaws />} 
-            name="AWS" 
-            description="Cloud Platform" 
-            category="devops"
-          /> */}
-          <ToolCard 
-            icon={<SiVercel />} 
-            name="Vercel" 
-            description="Deployment Platform" 
-            category="devops"
-          />
-          <ToolCard 
-            icon={<SiGithubactions />} 
-            name="GitHub Actions" 
-            description="CI/CD" 
-            category="devops"
-          />
-          {/* <ToolCard 
-            icon={<SiKafka />} 
-            name="Kafka" 
-            description="Event Streaming" 
-            category="devops"
-          /> */}
-        </div>
-
-        <CategoryHeading title="Web3 & Blockchain" icon={<SiWeb3Dotjs />} />
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          <ToolCard 
-            icon={<SiWeb3Dotjs />} 
-            name="Web3.js" 
-            description="Ethereum JavaScript API" 
-            category="web3"
-          />
-          <ToolCard 
-            icon={<SiSolidity />} 
-            name="Solidity" 
-            description="Smart Contract Language" 
-            category="web3"
-          />
-          <ToolCard 
-            icon={<SiStripe />} 
-            name="Stripe" 
-            description="Payment Processing" 
-            category="web3"
-          />
-        </div>
+      {/* Mobile filter button */}
+      <div className="md:hidden flex justify-center mb-6">
+        <motion.button
+          whileTap={{ scale: 0.95 }}
+          onClick={() => setIsFilterOpen(!isFilterOpen)}
+          className="flex items-center gap-2 bg-zinc-800 px-4 py-2 rounded-full text-white"
+        >
+          <FaFilter />
+          <span>Filter Tools</span>
+        </motion.button>
       </div>
- </div>
+
+      {/* Categories Filter - Desktop horizontal, Mobile dropdown */}
+      <AnimatePresence>
+        {(isFilterOpen ||
+          (typeof window !== "undefined" && window.innerWidth >= 768)) && (
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.3 }}
+            className="flex flex-wrap gap-3 mb-8 justify-center"
+          >
+            {categories.map((category) => (
+              <CategoryHeading
+                key={category.id}
+                title={category.title}
+                icon={category.icon}
+                isActive={selectedCategory === category.id}
+                onClick={() => setSelectedCategory(category.id as CategoryType)}
+              />
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Tools Grid with Animation */}
+      <ToolsGrid tools={tools} selectedCategory={selectedCategory} />
+    </div>
   );
 };
 
