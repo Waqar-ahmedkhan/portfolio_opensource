@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   SiNextdotjs,
@@ -160,6 +160,21 @@ const ToolsGrid = ({
 const DeveloperTools = () => {
   const [selectedCategory, setSelectedCategory] = useState<CategoryType>("all");
   const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  
+  // Handle client-side only code to avoid hydration mismatch
+  useEffect(() => {
+    setIsMounted(true);
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const categories = [
     { id: "all", title: "All Tools", icon: <SiReact /> },
@@ -280,6 +295,17 @@ const DeveloperTools = () => {
     },
   ];
 
+  // Only show content after component has mounted on client
+  if (!isMounted) {
+    return (
+      <div className="lg:ml-40 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 mb-16 relative">
+        <div className="h-96 flex items-center justify-center">
+          {/* Optional loading indicator */}
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="lg:ml-40 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 mb-16 relative">
       {/* Animated background effects */}
@@ -328,22 +354,23 @@ const DeveloperTools = () => {
         </motion.p>
       </motion.div>
 
-      {/* Mobile filter button */}
-      <div className="md:hidden flex justify-center mb-6">
-        <motion.button
-          whileTap={{ scale: 0.95 }}
-          onClick={() => setIsFilterOpen(!isFilterOpen)}
-          className="flex items-center gap-2 bg-zinc-800 px-4 py-2 rounded-full text-white"
-        >
-          <FaFilter />
-          <span>Filter Tools</span>
-        </motion.button>
-      </div>
+      {/* Mobile filter button - only shown on mobile */}
+      {isMobile && (
+        <div className="flex justify-center mb-6">
+          <motion.button
+            whileTap={{ scale: 0.95 }}
+            onClick={() => setIsFilterOpen(!isFilterOpen)}
+            className="flex items-center gap-2 bg-zinc-800 px-4 py-2 rounded-full text-white"
+          >
+            <FaFilter />
+            <span>Filter Tools</span>
+          </motion.button>
+        </div>
+      )}
 
-      {/* Categories Filter - Desktop horizontal, Mobile dropdown */}
+      {/* Categories Filter - Desktop always visible, Mobile toggle */}
       <AnimatePresence>
-        {(isFilterOpen ||
-          (typeof window !== "undefined" && window.innerWidth >= 768)) && (
+        {(!isMobile || isFilterOpen) && (
           <motion.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
