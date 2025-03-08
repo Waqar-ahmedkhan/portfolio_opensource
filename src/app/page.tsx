@@ -6,12 +6,19 @@ import ExperienceSection from "./_components/custom/ExperienceComp";
 import Skills from "./_components/custom/SkillTool";
 import Thougths from "./_components/custom/DesignThoughts";
 import ContactUs from "./_components/custom/Contactus";
+import SidebarProfile from "./_components/custom/SideBarProfile";
 
 export default function Home() {
   return (
-    <main className="overflow-x-hidden">
+    <main className="overflow-x-hidden overflow-hidden">
+      <div className="md:hidden mb-20">
+          <SidebarProfile />
+        </div>
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-end">
+        {/* Show SidebarProfile only on mobile (hidden on md and above) */}
+        
+        
+        <div className="flex justify-end ">
           <ProfessionalStats />
         </div>
         

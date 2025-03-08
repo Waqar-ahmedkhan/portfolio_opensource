@@ -41,7 +41,7 @@ const ProfessionalStats = () => {
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-4">
+        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-extrabold  text-white mb-4">
           FULL-STACK
           <br />
           <span className="text-zinc-700">& DEVOPS <span className="">ENGINEEER</span> </span>

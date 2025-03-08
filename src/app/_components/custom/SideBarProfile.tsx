@@ -5,11 +5,11 @@ import { Twitter, Instagram, Mail, Github } from "lucide-react";
 
 const ProfileSidebar = () => {
   return (
-    <div className="w-full lg:w-[350px] h-full sticky bg-white rounded-3xl border border-zinc-800/50 shadow-lg">
+    <div className="w-full max-w-[95vw] mx-auto lg:w-[350px] h-full lg:sticky bg-white rounded-3xl border border-zinc-800/50 shadow-lg lg:shadow-xl">
       {/* Card with curved dotted line decoration */}
-      <div className="relative p-6">
-        {/* Dotted curved line decoration */}
-        <div className="absolute top-0 right-2">
+      <div className="relative p-4 sm:p-6">
+        {/* Dotted curved line decoration - Hidden on mobile */}
+        <div className="absolute top-0 right-2 hidden lg:block">
           <svg
             width="120"
             height="120"
@@ -28,25 +28,26 @@ const ProfileSidebar = () => {
         </div>
 
         {/* Profile Image Container */}
-        <div className="mb-6 mt-4">
-          <div className="rounded-2xl overflow-hidden bg-orange-600 w-full h-64 relative">
+        <div className="mb-4 lg:mb-6 mt-2 lg:mt-4">
+          <div className="rounded-2xl overflow-hidden h-48 lg:h-72 w-48 lg:w-60 mx-auto">
             <Image
-              src="/profile-image.jpg"
+              src="/profile2.png"  
               alt="Waqar Ahmed"
               className="w-full h-full object-cover mix-blend-multiply"
               width={400}
-              height={400}
+              height={500}
+              priority
             />
           </div>
         </div>
 
         {/* Name */}
-        <h1 className="text-3xl font-bold text-zinc-900 mb-6 text-center">
-          Aabid Ahmed
+        <h1 className="text-3xl lg:text-4xl font-extrabold text-zinc-900 mb-4 lg:mb-6 text-center">
+          Waqar Ahmed
         </h1>
 
         {/* Fire icon */}
-        <div className="flex justify-center mb-4">
+        <div className="flex justify-center mb-3 lg:mb-4">
           <div className="bg-orange-500 p-2 rounded-full">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -66,73 +67,42 @@ const ProfileSidebar = () => {
         </div>
 
         {/* Bio */}
-        <p className="text-zinc-700 font-semibold text-center mb-8">
+        <p className="text-sm lg:text-base text-zinc-700 font-semibold text-center mb-6 lg:mb-8 px-2 lg:px-0 leading-relaxed">
           Passionate <span className="text-orange-500">Full Stack Developer</span> &{" "}
           <span className="text-orange-500">DevOps Engineer</span>, crafting seamless
-          digital experiences. Skilled in designing scalable applications, cloud
-          automation, and optimizing CI/CD workflows for peak performance.
+          digital experiences. Skilled in designing scalable applications
         </p>
 
         {/* Social Media & Freelance Icons */}
-        <div className="flex justify-center space-x-4 mb-4">
-          {/* Fiverr */}
-          <Link
-            href="https://www.fiverr.com"
-            target="_blank"
-            className="text-green-600 hover:text-green-500 transition-colors"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
-              <circle cx="12" cy="12" r="10"></circle>
-              <text x="7" y="15" fontSize="10" fontWeight="bold" fill="white">F</text>
-            </svg>
-          </Link>
-
-          {/* Upwork */}
-          <Link
-            href="https://www.upwork.com"
-            target="_blank"
-            className="text-green-500 hover:text-green-400 transition-colors"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
-              <circle cx="12" cy="12" r="10"></circle>
-              <text x="5" y="15" fontSize="10" fontWeight="bold" fill="white">UP</text>
-            </svg>
-          </Link>
-
-          {/* GitHub */}
-          <Link
-            href="https://github.com"
-            target="_blank"
-            className="text-gray-900 hover:text-gray-700 transition-colors"
-          >
-            <Github size={22} />
-          </Link>
-
-          {/* Twitter */}
-          <Link
-            href="https://twitter.com"
-            target="_blank"
-            className="text-blue-500 hover:text-blue-400 transition-colors"
-          >
-            <Twitter size={22} />
-          </Link>
-
-          {/* Instagram */}
-          <Link
-            href="https://instagram.com"
-            target="_blank"
-            className="text-pink-500 hover:text-pink-400 transition-colors"
-          >
-            <Instagram size={22} />
-          </Link>
-
-          {/* Mail */}
-          <Link
-            href="mailto:email@example.com"
-            className="text-orange-500 hover:text-orange-400 transition-colors"
-          >
-            <Mail size={22} />
-          </Link>
+        <div className="flex flex-wrap justify-center gap-3 lg:gap-4 mb-4 px-2">
+          {/* Social Icons */}
+          {[
+            { href: "https://www.fiverr.com", icon: (
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                <circle cx="12" cy="12" r="10"></circle>
+                <text x="7" y="15" fontSize="10" fontWeight="bold" fill="white">F</text>
+              </svg>
+            ), color: "text-green-600" },
+            { href: "https://www.upwork.com", icon: (
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                <circle cx="12" cy="12" r="10"></circle>
+                <text x="5" y="15" fontSize="10" fontWeight="bold" fill="white">UP</text>
+              </svg>
+            ), color: "text-green-500" },
+            { href: "https://github.com", icon: <Github size={22} />, color: "text-gray-900" },
+            { href: "https://twitter.com", icon: <Twitter size={22} />, color: "text-blue-500" },
+            { href: "https://instagram.com", icon: <Instagram size={22} />, color: "text-pink-500" },
+            { href: "mailto:email@example.com", icon: <Mail size={22} />, color: "text-orange-500" },
+          ].map((link, index) => (
+            <Link
+              key={index}
+              href={link.href}
+              target="_blank"
+              className={`${link.color} hover:opacity-80 transition-opacity p-1.5 lg:p-2`}
+            >
+              {link.icon}
+            </Link>
+          ))}
         </div>
       </div>
     </div>
