@@ -42,31 +42,31 @@ const ExperienceSection: React.FC = () => {
   return (
     <div className="lg:ml-52">
       <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-bold mb-12 sm:mb-14 text-white">
-        <span className="text-white">12 YEARS OF</span>
+        <span className="text-white">FULL STACK</span>
         <br />
         <span className="text-gray-700">EXPERIENCE</span>
       </h2>
 
       <div className="space-y-6 sm:space-y-8">
         <ExperienceItem
-          company="TechWave Solutions"
-          title="Led the development of a full-stack web application using React, Node.js, and MongoDB, integrating CI/CD pipelines with Jenkins for automated deployments."
-          period="Jan 2020 - Present"
-          description="Architected scalable web applications, optimized AWS cloud infrastructure, and automated deployment processes, reducing release cycles by 30%."
+          company="National Incubation Center Kohat"
+          title="Full Stack Developer"
+          period="Jan 2021 - Present"
+          description="Worked on multiple projects using Node.js, Express.js, MongoDB, and Next.js. Developed scalable applications, optimized performance, and led full-stack development initiatives."
+        />
+
+       <ExperienceItem
+          company="Mobi Tech"
+          title="Lead Developer - MeetHub Dashboard"
+          period="Feb 2020 - Present"
+          description="Designed and developed MeetHub, a business networking dashboard with real-time messaging, event management, and user analytics using Next.js, Node.js, and PostgreSQL."
         />
 
         <ExperienceItem
-          company="CloudNest Innovations"
-          title="Designed and deployed a microservices architecture using Docker and Kubernetes, reducing deployment time by 40%."
-          period="Jun 2017 - Dec 2019"
-          description="Automated infrastructure provisioning with Terraform and Ansible, and implemented monitoring with Prometheus and Grafana for real-time system insights."
-        />
-
-        <ExperienceItem
-          company="AIForge Labs"
-          title="Developed and deployed machine learning models for predictive analytics using TensorFlow and PyTorch, integrated into production systems."
-          period="Mar 2015 - May 2017"
-          description="Collaborated with data scientists to productionize AI models, optimized performance, and ensured seamless integration with existing full-stack applications."
+          company="KUST Incubation Center"
+          title="Full Stack DevOps Engineer"
+          period="Jul 2019 - Dec 2021"
+          description="Deployed and managed multiple startup projects, ensuring high availability and scalability. Automated CI/CD pipelines and optimized cloud infrastructure for seamless deployments."
         />
       </div>
     </div>

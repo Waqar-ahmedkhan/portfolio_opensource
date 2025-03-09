@@ -3,6 +3,7 @@ import React from 'react'
 import { useParams } from 'next/navigation'
 import ArticleReader from '@/app/_components/custom/ArticleReader'
 import Articles from "../../_data/articles"
+import Contactus from "../../_components/custom/Contactus"
 
 function Page() {
   // Get the article ID from the URL parameters
@@ -21,6 +22,9 @@ function Page() {
       ) : (
         <div>Article not found</div>
       )}
+
+
+      <Contactus/>
     </>
   )
 }

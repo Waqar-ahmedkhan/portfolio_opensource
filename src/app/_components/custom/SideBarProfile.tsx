@@ -1,11 +1,11 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Twitter, Instagram, Mail, Github } from "lucide-react";
+import { Mail, Github, Linkedin } from "lucide-react";
 
 const ProfileSidebar = () => {
   return (
-    <div className="w-full max-w-[95vw] mx-auto lg:w-[350px] h-full lg:sticky bg-white rounded-3xl border border-zinc-800/50 shadow-lg lg:shadow-xl">
+    <div className="w-full max-w-[95vw] mx-auto lg:w-[350px] lg:sticky  bg-white rounded-3xl border border-zinc-800/50 shadow-lg lg:shadow-xl">
       {/* Card with curved dotted line decoration */}
       <div className="relative p-4 sm:p-6">
         {/* Dotted curved line decoration - Hidden on mobile */}
@@ -29,26 +29,31 @@ const ProfileSidebar = () => {
 
         {/* Profile Image Container */}
         <div className="mb-4 lg:mb-6 mt-2 lg:mt-4">
-          <div className="rounded-2xl overflow-hidden h-48 lg:h-72 w-48 lg:w-60 mx-auto">
+          <div className="relative rounded-2xl overflow-hidden h-48 lg:h-72 w-48 lg:w-60 mx-auto group">
             <Image
               src="/profile2.png"  
               alt="Waqar Ahmed"
-              className="w-full h-full object-cover mix-blend-multiply"
+              className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
               width={400}
               height={500}
               priority
             />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
           </div>
         </div>
 
         {/* Name */}
-        <h1 className="text-3xl lg:text-4xl font-extrabold text-zinc-900 mb-4 lg:mb-6 text-center">
+        <h1 className="text-3xl lg:text-4xl font-extrabold text-zinc-900 mb-2 lg:mb-3 text-center">
           Waqar Ahmed
         </h1>
+         {/* Title */}
+         <p className="text-sm text-orange-500 font-bold text-center mb-2 lg:mb-3">
+          Full Stack Developer & DevOps Engineer
+        </p>
 
         {/* Fire icon */}
-        <div className="flex justify-center mb-3 lg:mb-4">
-          <div className="bg-orange-500 p-2 rounded-full">
+        <div className="flex  justify-center mb-3 lg:mb-4">
+          <div className="bg-orange-500 p-2 rounded-full shadow-md hover:shadow-lg transition-shadow duration-300 hover:bg-orange-600">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -67,39 +72,28 @@ const ProfileSidebar = () => {
         </div>
 
         {/* Bio */}
-        <p className="text-sm lg:text-base text-zinc-700 font-semibold text-center mb-6 lg:mb-8 px-2 lg:px-0 leading-relaxed">
-          Passionate <span className="text-orange-500">Full Stack Developer</span> &{" "}
-          <span className="text-orange-500">DevOps Engineer</span>, crafting seamless
-          digital experiences. Skilled in designing scalable applications
+        <p className="text-sm lg:text-base text-zinc-700 mb-4 lg:mb-8 px-2 lg:px-2 leading-relaxed text-center">
+          Building scalable, cloud-powered solutions with a passion for innovation.
         </p>
 
-        {/* Social Media & Freelance Icons */}
-        <div className="flex flex-wrap justify-center gap-3 lg:gap-4 mb-4 px-2">
-          {/* Social Icons */}
+        {/* Social Media Icons - Only LinkedIn, GitHub and Mail */}
+        <div className="flex flex-wrap justify-center gap-4 px-2">
+          {/* Professional Social Icons */}
           {[
-            { href: "https://www.fiverr.com", icon: (
-              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
-                <circle cx="12" cy="12" r="10"></circle>
-                <text x="7" y="15" fontSize="10" fontWeight="bold" fill="white">F</text>
-              </svg>
-            ), color: "text-green-600" },
-            { href: "https://www.upwork.com", icon: (
-              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
-                <circle cx="12" cy="12" r="10"></circle>
-                <text x="5" y="15" fontSize="10" fontWeight="bold" fill="white">UP</text>
-              </svg>
-            ), color: "text-green-500" },
-            { href: "https://github.com", icon: <Github size={22} />, color: "text-gray-900" },
-            { href: "https://twitter.com", icon: <Twitter size={22} />, color: "text-blue-500" },
-            { href: "https://instagram.com", icon: <Instagram size={22} />, color: "text-pink-500" },
-            { href: "mailto:email@example.com", icon: <Mail size={22} />, color: "text-orange-500" },
+            { href: "https://linkedin.com/in/waqarahmed", icon: <Linkedin size={22} />, color: "text-blue-600", tooltip: "LinkedIn" },
+            { href: "https://github.com/waqarahmed", icon: <Github size={22} />, color: "text-gray-900", tooltip: "GitHub" },
+            { href: "mailto:contact@waqarahmed.dev", icon: <Mail size={22} />, color: "text-orange-500", tooltip: "Email" },
           ].map((link, index) => (
             <Link
               key={index}
               href={link.href}
               target="_blank"
-              className={`${link.color} hover:opacity-80 transition-opacity p-1.5 lg:p-2`}
+              className={`${link.color} hover:opacity-80 transition-all p-2 hover:bg-gray-100 rounded-full relative group`}
+              aria-label={link.tooltip}
             >
+              <span className="absolute -top-8 left-1/2 -translate-x-1/2 bg-gray-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap">
+                {link.tooltip}
+              </span>
               {link.icon}
             </Link>
           ))}

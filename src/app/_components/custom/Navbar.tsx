@@ -28,7 +28,7 @@ function Navbar() {
   }, [pathname, icons]);
 
   return (
-    <nav className="pt-10 flex justify-center items-center w-full h-16">
+    <nav className="pt-10 flex justify-center items-center w-full  h-16">
       <div className="flex items-center bg-stone-900 rounded-xl px-7 py-3 gap-9">
         {icons.map((item) => (
           <Link 

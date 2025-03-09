@@ -63,10 +63,7 @@ const ToolCard = ({
         delay: index * 0.05,
         ease: [0.22, 1, 0.36, 1],
       }}
-      whileHover={{
-        y: -6,
-        transition: { duration: 0.2 },
-      }}
+      whileHover={{ y: -6, transition: { duration: 0.2 } }}
       className="bg-zinc-900/90 backdrop-blur-sm rounded-xl p-4 border border-zinc-800 hover:border-zinc-600 shadow-lg shadow-black/5 transition-all flex items-center gap-4 group"
     >
       <motion.div
@@ -102,7 +99,7 @@ const CategoryHeading = ({
     whileHover={{ scale: 1.05 }}
     whileTap={{ scale: 0.98 }}
     onClick={onClick}
-    className={`flex items-center gap-3 px-4 py-2 rounded-lg transition-all ${
+    className={`flex items-center gap-3 px-4 py-2 rounded-lg transition-all focus:outline-none focus:ring-2 focus:ring-orange-500 ${
       isActive
         ? "bg-orange-500 text-white shadow-lg shadow-orange-500/20"
         : "bg-zinc-800/50 text-zinc-400 hover:bg-zinc-700/70 hover:text-zinc-200"
@@ -140,7 +137,7 @@ const ToolsGrid = ({
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         transition={{ duration: 0.3 }}
-        className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-8"
+        className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 mt-8"
       >
         {filteredTools.map((tool, index) => (
           <ToolCard
@@ -162,18 +159,14 @@ const DeveloperTools = () => {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-  
-  // Handle client-side only code to avoid hydration mismatch
+
+  // Handle client-side rendering to avoid hydration mismatch
   useEffect(() => {
     setIsMounted(true);
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
     handleResize();
-    window.addEventListener('resize', handleResize);
-    
-    return () => window.removeEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   const categories = [
@@ -215,7 +208,6 @@ const DeveloperTools = () => {
       description: "Typed JavaScript",
       category: "frontend",
     },
-
     // Backend Tools
     {
       icon: <SiNodedotjs />,
@@ -241,7 +233,6 @@ const DeveloperTools = () => {
       description: "ORM for Node.js",
       category: "backend",
     },
-
     // DevOps Tools
     {
       icon: <SiDocker />,
@@ -267,7 +258,6 @@ const DeveloperTools = () => {
       description: "CI/CD",
       category: "devops",
     },
-
     // AI & ML Tools
     {
       icon: <SiTensorflow />,
@@ -295,10 +285,9 @@ const DeveloperTools = () => {
     },
   ];
 
-  // Only show content after component has mounted on client
   if (!isMounted) {
     return (
-      <div className="lg:ml-40 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 mb-16 relative">
+      <div className="lg:ml-40 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 mb-16 relative">
         <div className="h-96 flex items-center justify-center">
           {/* Optional loading indicator */}
         </div>
@@ -307,16 +296,15 @@ const DeveloperTools = () => {
   }
 
   return (
-    <div className="lg:ml-40 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 mb-16 relative">
-      {/* Animated background effects */}
+    <div className="lg:ml-40 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 mb-16 relative">
+      {/* Responsive background effects */}
       <div className="absolute top-0 right-0 -z-10">
-        <div className="absolute -top-20 -right-20 w-72 h-72 bg-orange-500/10 rounded-full blur-3xl animate-pulse"></div>
         <div
-          className="absolute top-40 right-80 w-52 h-52 bg-blue-500/10 rounded-full blur-3xl animate-pulse"
+          className="absolute top-20 right-20 w-32 h-32 sm:w-40 sm:h-40 lg:w-52 lg:h-52 bg-blue-500/10 rounded-full blur-3xl animate-pulse"
           style={{ animationDuration: "7s" }}
         ></div>
         <div
-          className="absolute top-80 right-20 w-40 h-40 bg-purple-500/10 rounded-full blur-3xl animate-pulse"
+          className="absolute top-40 right-10 w-24 h-24 sm:w-32 sm:h-32 lg:w-40 lg:h-40 bg-purple-500/10 rounded-full blur-3xl animate-pulse"
           style={{ animationDuration: "10s" }}
         ></div>
       </div>
@@ -331,7 +319,7 @@ const DeveloperTools = () => {
           initial={{ x: -50, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-pink-500"
+          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-pink-500"
         >
           PREMIUM
         </motion.h2>
@@ -339,7 +327,7 @@ const DeveloperTools = () => {
           initial={{ x: 50, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-zinc-700 mb-4"
+          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-zinc-700 mb-4"
         >
           TOOLS
         </motion.h2>
@@ -347,20 +335,21 @@ const DeveloperTools = () => {
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.6 }}
-          className="text-zinc-400 max-w-2xl"
+          className="text-zinc-400 max-w-2xl text-sm sm:text-base"
         >
           Showcasing my top skills in full-stack development, DevOps, and AI
           with these powerful tools.
         </motion.p>
       </motion.div>
 
-      {/* Mobile filter button - only shown on mobile */}
+      {/* Mobile filter toggle */}
       {isMobile && (
         <div className="flex justify-center mb-6">
           <motion.button
             whileTap={{ scale: 0.95 }}
             onClick={() => setIsFilterOpen(!isFilterOpen)}
-            className="flex items-center gap-2 bg-zinc-800 px-4 py-2 rounded-full text-white"
+            aria-expanded={isFilterOpen}
+            className="flex items-center gap-2 bg-zinc-800 px-4 py-2 rounded-full text-white focus:outline-none focus:ring-2 focus:ring-orange-500"
           >
             <FaFilter />
             <span>Filter Tools</span>
@@ -368,7 +357,7 @@ const DeveloperTools = () => {
         </div>
       )}
 
-      {/* Categories Filter - Desktop always visible, Mobile toggle */}
+      {/* Categories filter */}
       <AnimatePresence>
         {(!isMobile || isFilterOpen) && (
           <motion.div
@@ -391,7 +380,6 @@ const DeveloperTools = () => {
         )}
       </AnimatePresence>
 
-      {/* Tools Grid with Animation */}
       <ToolsGrid tools={tools} selectedCategory={selectedCategory} />
     </div>
   );
